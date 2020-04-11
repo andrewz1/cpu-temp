@@ -70,15 +70,17 @@ func writeInt(path string, v int) (err error) {
 func getCpuTemp() (rv int, err error) {
 	var (
 		tmp int
-		sum float64
+		max int
 	)
 	for _, p := range cpus {
 		if tmp, err = readInt(p + cpuTempPath); err != nil {
 			return
 		}
-		sum += float64(tmp)
+		if tmp > max {
+			max = tmp
+		}
 	}
-	rv = int(sum / float64(len(cpus)))
+	rv = max
 	return
 }
 
