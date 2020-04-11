@@ -1,0 +1,11 @@
+[Unit]
+Description=cpu-temp
+
+[Service]
+Type=simple
+ExecStart=-/opt/cpu-temp
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
